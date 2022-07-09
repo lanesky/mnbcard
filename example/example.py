@@ -43,9 +43,9 @@ save_to_file(filename ="SigCert.der", data = card.get_cert_for_sign( sig_pin))
 # 署名用証明書CA取得(署名PIN必要)
 save_to_file(filename ="Sign_CA.der", data = card.get_ca_for_sign( sig_pin))
 
-# 個人番号取得(認証PIN必要)
+# 個人番号取得(券面補助PIN必要)
 print(card.get_my_number(profile_pin))
-# 基本４情報取得(認証PIN必要)
+# 基本４情報取得(券面補助PIN必要)
 for iter in card.get_basic_info( profile_pin):
     print(iter)
 
