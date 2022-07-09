@@ -28,7 +28,7 @@ connection = connect_card(reader)
 sig_pin = input("Please input the signature PIN: ")
 # 券面補助PIN入力（券面情報読み取り場合は必要）
 profile_pin = input("Please input the profile PIN: ")
-# 認証PIN入力（券面情報読み取り、または認証秘密鍵による署名をする場合は必要）
+# 認証PIN入力（認証秘密鍵による署名をする場合は必要）
 auth_pin = input("Please input the authentication PIN: ")
 
 # カードインスタンス作成
