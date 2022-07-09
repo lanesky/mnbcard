@@ -21,7 +21,7 @@
   - 認証用秘密鍵による署名
   - 署名用秘密鍵による署名
 
-## インストール
+## ライブラリー
 
 - Install [pyscard](http://pyscard.sourceforge.net/) python library
 
@@ -32,3 +32,19 @@
 ## OpenSSL による署名検証
 
 - 詳しくは `example/verify.sh` を参照。
+
+## 注意点
+
+### 例外処理
+
+APDU 送信して結果が成功しない場合、exception をスローする。
+
+### 対応 OS
+
+このツールは pyscard に依存するので、Windowsx/MacOS/Linux は対応可能
+
+### テスト済の OS、カード
+
+現時点で、以下の組み合わせはテスト済。
+
+- OS: MacOS, Card Reader: I-O DATA USB-NFC3

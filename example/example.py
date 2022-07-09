@@ -26,6 +26,8 @@ connection = connect_card(reader)
 
 # 署名PIN入力（署名秘密鍵による署名をする場合は必要）
 sig_pin = input("Please input the signature PIN: ")
+# 券面補助PIN入力（券面情報読み取り場合は必要）
+profile_pin = input("Please input the profile PIN: ")
 # 認証PIN入力（券面情報読み取り、または認証秘密鍵による署名をする場合は必要）
 auth_pin = input("Please input the authentication PIN: ")
 
@@ -42,9 +44,9 @@ save_to_file(filename ="SigCert.der", data = card.get_cert_for_sign( sig_pin))
 save_to_file(filename ="Sign_CA.der", data = card.get_ca_for_sign( sig_pin))
 
 # 個人番号取得(認証PIN必要)
-print(card.get_my_number(auth_pin))
+print(card.get_my_number(profile_pin))
 # 基本４情報取得(認証PIN必要)
-for iter in card.get_basic_info( auth_pin):
+for iter in card.get_basic_info( profile_pin):
     print(iter)
 
 # 署名秘密鍵によるファイル署名(署名PIN必要)
