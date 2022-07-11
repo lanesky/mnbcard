@@ -21,30 +21,91 @@
   - 認証用秘密鍵による署名
   - 署名用秘密鍵による署名
 
-## ライブラリー
+## 実行環境
 
-- Install [pyscard](http://pyscard.sourceforge.net/) python library
+- Python 3.8.5 以上
+
+## 必要なライブラー
+
+- [pyscard](https://pyscard.sourceforge.io/)
 
 ## 使用例
 
 - 詳しくは `example/example.py` を参照。
 
+```
+python example.py
+
+```
+
+RESULTS:
+
+```
+Please input the signature PIN: (******)
+Please input the profile PIN:  (****)
+Please input the authentication PIN:  (****)
+2022-07-09 12:46:23,258 - api - INFO - 認証用証明書: 90 0
+2022-07-09 12:46:24,961 - api - INFO - 認証用証明書CA: 90 0
+2022-07-09 12:46:26,432 - api - INFO - SELECT 署名用PIN: 90 0
+2022-07-09 12:46:26,497 - api - INFO - VERIFY 署名用PIN: 90 0
+2022-07-09 12:46:26,543 - api - INFO - 認証用証明書: 90 0
+2022-07-09 12:46:28,437 - api - INFO - SELECT 署名用PIN: 90 0
+2022-07-09 12:46:28,502 - api - INFO - VERIFY 署名用PIN: 90 0
+2022-07-09 12:46:28,547 - api - INFO - 署名用証明書CA: 90 0
+2022-07-09 12:46:29,968 - api - INFO - 券面入力補助AP: 90 0
+2022-07-09 12:46:30,000 - api - INFO - SELECT 券面入力補助用PIN: 90 0
+2022-07-09 12:46:30,057 - api - INFO - VERIFY 券面入力補助用PIN: 90 0
+2022-07-09 12:46:30,103 - api - INFO - マイナンバー: 90 0
+（***個人番号 ***）
+2022-07-09 12:46:30,233 - api - INFO - 券面入力補助AP: 90 0
+2022-07-09 12:46:30,278 - api - INFO - SELECT 券面入力補助用PIN: 90 0
+2022-07-09 12:46:30,335 - api - INFO - VERIFY 券面入力補助用PIN: 90 0
+2022-07-09 12:46:30,369 - api - INFO - 基本4情報: 90 0
+（***名前 ***）
+（***住所 ***）
+（***生年月日 ***）
+（***性別 ***）
+2022-07-09 12:46:30,710 - api - INFO - SELECT 署名用PIN: 90 0
+2022-07-09 12:46:30,773 - api - INFO - VERIFY 署名用PIN: 90 0
+2022-07-09 12:46:30,818 - api - INFO - SELECT 署名用秘密鍵: 90 0
+2022-07-09 12:46:31,535 - api - INFO - COMPUTE DIGITAL SIGNATURE: 90 0
+2022-07-09 12:46:31,668 - api - INFO - SELECT 認証用PIN: 90 0
+2022-07-09 12:46:31,730 - api - INFO - VERIFY 認証用PIN: 90 0
+2022-07-09 12:46:31,775 - api - INFO - SELECT 認証用秘密鍵: 90 0
+2022-07-09 12:46:32,482 - api - INFO - COMPUTE DIGITAL SIGNATURE: 90 0
+
+```
+
 ## OpenSSL による署名検証
 
-- 詳しくは `example/verify.sh` を参照。
+- 検証方法は `example/verify.sh` を参照。
 
 ## 注意点
 
+### 基本４情報の「性別」
+
+性別は１桁の数字で出力する。
+
+- 1: 男
+- 2: 女
+- 3: その他
+
 ### 例外処理
 
-APDU 送信して結果が成功しない場合、exception をスローする。
+APDU 送信して結果が成功しない場合、exception はスローされる。
+
+### ディジタル署名
+
+署名アルゴリズムは、SHA256 のみを使用する。
 
 ### 対応 OS
 
-このツールは pyscard に依存するので、Windowsx/MacOS/Linux は対応可能
+- Windowsx
+- MacOS
+- Linux
 
 ### テスト済の OS、カード
 
-現時点で、以下の組み合わせはテスト済。
+現時点、以下の組み合わせではテスト済。
 
 - OS: MacOS, Card Reader: I-O DATA USB-NFC3
