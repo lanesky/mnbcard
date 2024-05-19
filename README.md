@@ -109,3 +109,216 @@ APDU 送信して結果が成功しない場合、exception はスローされ�
 現時点、以下の組み合わせではテスト済。
 
 - OS: MacOS, Card Reader: I-O DATA USB-NFC3
+
+## Card クラスのAPI仕様
+
+### Initialization
+#### Class: `Card`
+- **Constructor Parameters**:
+  - `connection`: A connection object to communicate with the card.
+  - `log_level`: (Optional) Logging level (e.g., `logging.DEBUG`).
+
+### Methods
+
+#### Select File PKI AP
+- **Method**: `select_file_pki_ap()`
+- **Description**: Selects the PKI authentication applet.
+- **Parameters**: None
+- **Returns**: None
+- **Raises**: Exception if an error occurs.
+
+#### Select File Certificate for Authentication
+- **Method**: `select_file_cert_for_auth()`
+- **Description**: Selects the file for the authentication certificate.
+- **Parameters**: None
+- **Returns**: None
+- **Raises**: Exception if an error occurs.
+
+#### Select File CA for Authentication
+- **Method**: `select_file_ca_for_auth()`
+- **Description**: Selects the file for the authentication certificate CA.
+- **Parameters**: None
+- **Returns**: None
+- **Raises**: Exception if an error occurs.
+
+#### Select File Authentication PIN
+- **Method**: `select_file_auth_pin()`
+- **Description**: Selects the file for the authentication PIN.
+- **Parameters**: None
+- **Returns**: None
+- **Raises**: Exception if an error occurs.
+
+#### Verify Authentication PIN
+- **Method**: `verify_auth_pin(pin_bytes)`
+- **Description**: Verifies the authentication PIN.
+- **Parameters**:
+  - `pin_bytes`: List of bytes representing the PIN.
+- **Returns**: None
+- **Raises**: Exception if an error occurs.
+
+#### Select File Authentication Private Key
+- **Method**: `select_file_auth_private_key()`
+- **Description**: Selects the file for the authentication private key.
+- **Parameters**: None
+- **Returns**: None
+- **Raises**: Exception if an error occurs.
+
+#### Select File Certificate for Signature
+- **Method**: `select_file_cert_for_signature()`
+- **Description**: Selects the file for the signature certificate.
+- **Parameters**: None
+- **Returns**: None
+- **Raises**: Exception if an error occurs.
+
+#### Select File CA for Signature
+- **Method**: `select_file_ca_for_signature()`
+- **Description**: Selects the file for the signature certificate CA.
+- **Parameters**: None
+- **Returns**: None
+- **Raises**: Exception if an error occurs.
+
+#### Select File Signature PIN
+- **Method**: `select_file_signature_pin()`
+- **Description**: Selects the file for the signature PIN.
+- **Parameters**: None
+- **Returns**: None
+- **Raises**: Exception if an error occurs.
+
+#### Verify Signature PIN
+- **Method**: `verify_signature_pin(pin_bytes)`
+- **Description**: Verifies the signature PIN.
+- **Parameters**:
+  - `pin_bytes`: List of bytes representing the PIN.
+- **Returns**: None
+- **Raises**: Exception if an error occurs.
+
+#### Select File Signature Private Key
+- **Method**: `select_file_signature_private_key()`
+- **Description**: Selects the file for the signature private key.
+- **Parameters**: None
+- **Returns**: None
+- **Raises**: Exception if an error occurs.
+
+#### Select File Profile AP
+- **Method**: `select_file_profile_ap()`
+- **Description**: Selects the file for the profile AP.
+- **Parameters**: None
+- **Returns**: None
+- **Raises**: Exception if an error occurs.
+
+#### Select File Profile PIN
+- **Method**: `select_file_profile_pin()`
+- **Description**: Selects the file for the profile PIN.
+- **Parameters**: None
+- **Returns**: None
+- **Raises**: Exception if an error occurs.
+
+#### Verify Profile PIN
+- **Method**: `verify_profile_pin(pin_bytes)`
+- **Description**: Verifies the profile PIN.
+- **Parameters**:
+  - `pin_bytes`: List of bytes representing the PIN.
+- **Returns**: None
+- **Raises**: Exception if an error occurs.
+
+#### Select File My Number
+- **Method**: `select_file_my_number()`
+- **Description**: Selects the file for the My Number (personal number).
+- **Parameters**: None
+- **Returns**: None
+- **Raises**: Exception if an error occurs.
+
+#### Select File Basic 4 Info
+- **Method**: `select_file_base_4_info()`
+- **Description**: Selects the file for the basic 4 information.
+- **Parameters**: None
+- **Returns**: None
+- **Raises**: Exception if an error occurs.
+
+#### Read Binary Certificate
+- **Method**: `read_binary_cert()`
+- **Description**: Reads the binary certificate.
+- **Parameters**: None
+- **Returns**: Certificate data in DER format.
+- **Raises**: Exception if an error occurs.
+
+#### Read Binary 256 Bytes
+- **Method**: `read_binary_256()`
+- **Description**: Reads 256 bytes of binary data.
+- **Parameters**: None
+- **Returns**: 256 bytes of data.
+- **Raises**: Exception if an error occurs.
+
+#### Compute Digital Signature
+- **Method**: `compute_digital_signature(hash)`
+- **Description**: Computes the digital signature.
+- **Parameters**:
+  - `hash`: Hash to be signed.
+- **Returns**: Signature data.
+- **Raises**: Exception if an error occurs.
+
+#### Get Certificate for Authentication
+- **Method**: `get_cert_for_auth()`
+- **Description**: Retrieves the authentication certificate.
+- **Parameters**: None
+- **Returns**: Authentication certificate in DER format.
+- **Raises**: Exception if an error occurs.
+
+#### Get CA for Authentication
+- **Method**: `get_ca_for_auth()`
+- **Description**: Retrieves the CA for authentication.
+- **Parameters**: None
+- **Returns**: CA certificate in DER format.
+- **Raises**: Exception if an error occurs.
+
+#### Get Certificate for Signature
+- **Method**: `get_cert_for_sign(sig_pin)`
+- **Description**: Retrieves the signature certificate.
+- **Parameters**:
+  - `sig_pin`: Signature PIN.
+- **Returns**: Signature certificate in DER format.
+- **Raises**: Exception if an error occurs.
+
+#### Get CA for Signature
+- **Method**: `get_ca_for_sign(sig_pin)`
+- **Description**: Retrieves the CA for signature.
+- **Parameters**:
+  - `sig_pin`: Signature PIN.
+- **Returns**: CA certificate in DER format.
+- **Raises**: Exception if an error occurs.
+
+#### Get My Number
+- **Method**: `get_my_number(auth_pin)`
+- **Description**: Retrieves the My Number (personal number).
+- **Parameters**:
+  - `auth_pin`: Authentication PIN.
+- **Returns**: My Number (personal number).
+- **Raises**: Exception if an error occurs.
+
+#### Get Basic Info
+- **Method**: `get_basic_info(auth_pin)`
+- **Description**: Retrieves the basic 4 information (name, address, birthdate, gender).
+- **Parameters**:
+  - `auth_pin`: Authentication PIN.
+- **Returns**: Tuple (name, address, birthdate, gender).
+- **Raises**: Exception if an error occurs.
+
+#### Sign File with Signature Key
+- **Method**: `sign_file_with_sign_key(sig_pin, filename)`
+- **Description**: Signs a file using the signature key.
+- **Parameters**:
+  - `sig_pin`: Signature PIN.
+  - `filename`: Name of the file to be signed.
+- **Returns**: Signature data.
+- **Raises**: Exception if an error occurs.
+
+#### Sign File with Authentication Key
+- **Method**: `sign_file_with_auth_key(auth_pin, filename)`
+- **Description**: Signs a file using the authentication key.
+- **Parameters**:
+  - `auth_pin`: Authentication PIN.
+  - `filename`: Name of the file to be signed.
+- **Returns**: Signature data.
+- **Raises**: Exception if an error occurs.
+
+
